@@ -10,8 +10,10 @@ boardContainer.classList.add("game--container");
 
 const gameStatus = document.createElement("h2");
 gameStatus.textContent = "Gamestatus";
+gameStatus.classList.add("game--status");
 const gameRestart = document.createElement("button");
 gameRestart.textContent = "Restart";
+gameRestart.classList.add("game--restart")
 
 document.body.append(sectionBoard);
 sectionBoard.appendChild(gameTitle);
@@ -56,6 +58,7 @@ const move = (target, player) => {
     target.textContent = player;
     updateBoard(gameBoard, row, column, player);
     updatePlayer();
+    updateStatus(sectionBoard, ".game--status");
 
     if (haveWinner(gameBoard)) {
       console.log("win");
@@ -97,3 +100,12 @@ function haveWinner(board) {
     }
   }
 }
+
+function updateStatus (board, selector) {
+  let status = board.querySelector(selector);
+  status.textContent = `${player}'s turn`;
+}
+
+gameRestart.addEventListener("click", () => {
+  
+});
