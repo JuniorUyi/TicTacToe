@@ -13,7 +13,7 @@ gameStatus.textContent = "Gamestatus";
 gameStatus.classList.add("game--status");
 const gameRestart = document.createElement("button");
 gameRestart.textContent = "Restart";
-gameRestart.classList.add("game--restart")
+gameRestart.classList.add("game--restart");
 
 document.body.append(sectionBoard);
 sectionBoard.appendChild(gameTitle);
@@ -38,7 +38,7 @@ const createBoard = (rows, columns) => {
 
   return board;
 };
-const gameBoard = createBoard(3, 3);
+let gameBoard = createBoard(3, 3);
 
 const updateBoard = (board, row, col, player) => {
   board[row][col] = player;
@@ -101,11 +101,14 @@ function haveWinner(board) {
   }
 }
 
-function updateStatus (board, selector) {
+function updateStatus(board, selector) {
   let status = board.querySelector(selector);
   status.textContent = `${player}'s turn`;
 }
 
 gameRestart.addEventListener("click", () => {
-  
+  const cells = sectionBoard.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    cell.textContent = "";
+  });
 });
